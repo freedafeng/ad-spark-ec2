@@ -69,8 +69,6 @@ template_vars = {
   "hadoop_major_version": os.getenv("HADOOP_MAJOR_VERSION"),
   "java_home": os.getenv("JAVA_HOME"),
   "default_tachyon_mem": "%dMB" % tachyon_mb,
-  "aws_access_key_id": os.getenv("AWS_ACCESS_KEY_ID"),
-  "aws_secret_access_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
 }
 
 template_dir="/root/spark-ec2/templates"
@@ -88,6 +86,6 @@ for path, dirs, files in os.walk(template_dir):
             print "Configuring " + dest_file
             text = src.read()
             for key in template_vars:
-              text = text.replace("{{" + key + "}}", template_vars[key] or '')
+              text = text.replace("{{" + key + "}}", template_vars[key])
             dest.write(text)
             dest.close()
